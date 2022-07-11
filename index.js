@@ -15,7 +15,7 @@ app.listen(port, async function () {
     console.log(`crawler is up: ${process.env.NODE_ENV}`);
    
          crawler.crawlAllUrls('https://www.trueinsights.co/')
-        console.log('crawlerService.crawlAllUrls()');
+        console.log('crawler.crawlAllUrls()');
 
    
 

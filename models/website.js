@@ -13,9 +13,8 @@ module.exports={
     create:function (user) {
         console.log('before insert');
         console.log(user)
-        return knex('websites').insert(user,'id').then(ids=>{
-            return ids[0];
-        })
+         knex('websites').insert(user,'id').returning('id')
+        .then(([id]) => console.log(id))
         
     }
 }

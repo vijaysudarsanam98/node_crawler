@@ -48,7 +48,8 @@ app.get(['/', '/health'], function (req, res) {
 
 app.listen(port, async function () {
     console.log(`crawler is up: ${process.env.NODE_ENV}`);
-   website.create({"name":url})
+   let x=website.create({"name":url})
+   console.log(x)
 
    crawler.crawlAllUrls(url)
                //  console.log('crawler.crawlAllUrls()');

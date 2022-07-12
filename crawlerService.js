@@ -1,4 +1,6 @@
 const Crawler = require("crawler");
+const website=require('./models/website')
+const knex=require('./models/knex')
 
 let obselete = []; // Array of what was crawled already
 
@@ -34,5 +36,6 @@ module.exports.crawlAllUrls=function  (url) {
         }
     })
 }
+console.log(obselete)
 
 

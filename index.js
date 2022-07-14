@@ -8,6 +8,8 @@ const website=require('./models/website')
 const bodyParser = require('body-parser');
 const app = express();
 let url='https://www.trueinsights.co/'
+const database = require('./sqlConnection');
+
 
 
 //initialize sentry logging
@@ -48,8 +50,10 @@ app.get(['/', '/health'], function (req, res) {
 
 app.listen(port, async function () {
     console.log(`crawler is up: ${process.env.NODE_ENV}`);
-   let x=website.create({"name":url})
-   console.log(x)
+   website.singleRowInsert(url)
+  let websiteId= await website.getWebsiteId()
+  console.log(websiteId)
+  
 
    crawler.crawlAllUrls(url)
                //  console.log('crawler.crawlAllUrls()');

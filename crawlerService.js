@@ -1,16 +1,20 @@
 const Crawler = require("crawler");
 const website=require('./models/website')
 const knex=require('./models/knex')
+let siteInsert=require('./models/website');
+const index=require('./index')
+
 
 let obselete = []; // Array of what was crawled already
 
 let c = new Crawler();
 
-module.exports.crawlAllUrls=function  (url) {
+module.exports.crawlAllUrls= async function  (url) {
     console.log(`Crawling ${url}`);
+   await website.siteInsert(url,10)
     c.queue({
         uri: url,
-        callback: function (err, res, done) {
+        callback:  function (err, res, done) {
             if (err) throw err;
             let $ = res.$;
             try {
@@ -28,6 +32,7 @@ module.exports.crawlAllUrls=function  (url) {
                         }
                     }
                 });
+                
             } catch (e) {
                 console.error(`Encountered an error crawling ${url}. Aborting crawl.`);
                 done()
@@ -35,7 +40,7 @@ module.exports.crawlAllUrls=function  (url) {
             done();
         }
     })
+    //console.log(url)
+    
 }
-console.log(obselete)
-
 

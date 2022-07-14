@@ -26,9 +26,9 @@ database: "project"
 
   let resContent = {};
 
-exports.executeSql =  function (query, params) {
+exports.executeSql =  async function (query, params) {
     try {
-        const result =  pool.query(query, params);
+        const result = await pool.query(query, params);
         resContent.message = 'Success.';
         resContent.success = true;
         resContent.rows = result.rows || null;

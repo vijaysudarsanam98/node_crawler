@@ -66,11 +66,11 @@ module.exports. getWebsiteId = async() => {
 
 // Function to insert single row values in
 // the database
-module.exports.singleRowInsert = (name) => {
+module.exports.singleRowInsert =  async function (name)  {
 
 	let query =  `INSERT INTO WEBSITES(name) VALUES(?); `
     //let query2=     `SELECT ID FROM WEBSITES ORDER BY ID DESC LIMIT 1`
-    let response =  db.executeSql(query, [name]);
+    let response =  await db.executeSql(query, [name]);
    // let response2=db.executeSql(query2);
    console.log(response.message)
 
@@ -98,3 +98,13 @@ module.exports.singleRowInsert = (name) => {
 
 
  //}
+
+ module.exports.siteInsert = async function (name,websiteId) {
+
+	let query =  `INSERT INTO SITES(crawled_sites,websiteid) VALUES(?,?); `
+    //let query2=     `SELECT ID FROM WEBSITES ORDER BY ID DESC LIMIT 1`
+    let response =  await db.executeSql(query, [name,websiteId]);
+   // let response2=db.executeSql(query2);
+   console.log(response.message)
+
+}

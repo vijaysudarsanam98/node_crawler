@@ -5,13 +5,15 @@ let siteInsert=require('./models/website');
 const index=require('./index')
 
 
+
 let obselete = []; // Array of what was crawled already
 
 let c = new Crawler();
 
-module.exports.crawlAllUrls= async function  (url) {
+module.exports.crawlAllUrls= async function  (url,websiteId) {
     console.log(`Crawling ${url}`);
-   await website.siteInsert(url,10)
+    console.log(websiteId)
+   await website.siteInsert(url,websiteId)
     c.queue({
         uri: url,
         callback:  function (err, res, done) {
@@ -27,7 +29,7 @@ module.exports.crawlAllUrls= async function  (url) {
                             obselete.push(href);
                             // Slow down the
                             setTimeout(function() {
-                                href.startsWith('http') ? module.exports.crawlAllUrls(href) : module.exports.crawlAllUrls(`${url}${href}`) // The latter might need extra code to test if its the same site and it is a full domain with no URI
+                                href.startsWith('http') ? module.exports.crawlAllUrls(href,websiteId) : module.exports.crawlAllUrls(`${url}${href}${websiteId}`) // The latter might need extra code to test if its the same site and it is a full domain with no URI
                             }, 5000)
                         }
                     }

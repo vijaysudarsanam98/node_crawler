@@ -54,9 +54,8 @@ app.listen(port, async function () {
   await website.singleRowInsert(url)
   let websiteId= await website.getWebsiteId()
   console.log(websiteId)
-  module.exports=websiteId
   
-    crawler.crawlAllUrls(url)
+   await crawler.crawlAllUrls(url,websiteId)
  //console.log(x)
                //  console.log('crawler.crawlAllUrls()');
    

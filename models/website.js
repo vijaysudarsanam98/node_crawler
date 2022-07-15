@@ -17,11 +17,7 @@ var stringify = require('json-stringify-safe');
 //     }
 // }
 
-module.exports. getWebsiteId = async() => {
-    let result = await knex.select('id').from('websites').orderBy('id','desc')
-    .limit('1')
-    return result[0].id;
-  }
+
 
     // },
 //     create:function (user) {
@@ -76,6 +72,13 @@ module.exports.singleRowInsert =  async function (name)  {
 
 }
 
+
+module.exports. getWebsiteId = async() => {
+  let result = await knex.select('id').from('websites').orderBy('id','desc')
+  .limit('1')
+  return result[0].id;
+}
+
 // 	Value to be inserted
 //  let z=   db.query(query, [name
 //         ], (err, rows) => {
@@ -100,6 +103,7 @@ module.exports.singleRowInsert =  async function (name)  {
  //}
 
  module.exports.siteInsert = async function (name,websiteId) {
+  console.log("website id on insert" + websiteId)
 
 	let query =  `INSERT INTO SITES(crawled_sites,websiteid) VALUES(?,?); `
     //let query2=     `SELECT ID FROM WEBSITES ORDER BY ID DESC LIMIT 1`

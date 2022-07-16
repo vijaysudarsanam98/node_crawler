@@ -63,8 +63,9 @@ var stringify = require('json-stringify-safe');
 // Function to insert single row values in
 // the database
 module.exports.singleRowInsert =  async function (name)  {
-
+console.log(name)
 	let query =  `INSERT INTO WEBSITES(name) VALUES(?); `
+  console.log(query)
     //let query2=     `SELECT ID FROM WEBSITES ORDER BY ID DESC LIMIT 1`
     let response =  await db.executeSql(query, [name]);
    // let response2=db.executeSql(query2);
@@ -73,9 +74,10 @@ module.exports.singleRowInsert =  async function (name)  {
 }
 
 
-module.exports. getWebsiteId = async() => {
+module.exports. getWebsiteId = async function ()  {
   let result = await knex.select('id').from('websites').orderBy('id','desc')
   .limit('1')
+  console.log(result)
   return result[0].id;
 }
 
@@ -105,7 +107,7 @@ module.exports. getWebsiteId = async() => {
  module.exports.siteInsert = async function (name,websiteId) {
   console.log("website id on insert" + websiteId)
 
-	let query =  `INSERT INTO SITES(crawled_sites,websiteid) VALUES(?,?); `
+	let query =  `INSERT INTO URLS(crawled_sites,website_id) VALUES(?,?); `
     //let query2=     `SELECT ID FROM WEBSITES ORDER BY ID DESC LIMIT 1`
     let response =  await db.executeSql(query, [name,websiteId]);
    // let response2=db.executeSql(query2);

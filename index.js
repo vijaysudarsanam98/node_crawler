@@ -52,10 +52,15 @@ app.get(['/', '/health'], function (req, res) {
 app.listen(port, async function () {
     console.log(`crawler is up: ${process.env.NODE_ENV}`);
   await website.singleRowInsert(url)
+
   let websiteId= await website.getWebsiteId()
   console.log(websiteId)
+
+  const newSite=await website.checkNewSite()
+  console.log(newSite)
   
    await crawler.crawlAllUrls(url,websiteId)
+ 
  //console.log(x)
                //  console.log('crawler.crawlAllUrls()');
    

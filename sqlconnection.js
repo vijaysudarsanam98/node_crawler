@@ -7,7 +7,7 @@ const pool = mysql.createConnection({
 host: "localhost",
 user: "root",
 password: "",
-database: "vijay"
+database: "db_crawler"
 });
 
 

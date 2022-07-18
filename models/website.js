@@ -1,6 +1,7 @@
 var knex = require('./knex');
 const db=require('../sqlconnection')
 var stringify = require('json-stringify-safe');
+const { json } = require('body-parser');
 
 
 //   module.exports={
@@ -107,10 +108,25 @@ module.exports. getWebsiteId = async function ()  {
  module.exports.siteInsert = async function (name,websiteId) {
   console.log("website id on insert" + websiteId)
 
-	let query =  `INSERT INTO URLS(crawled_sites,website_id) VALUES(?,?); `
+	let query =  `INSERT INTO URLS(crawled_sites,website_id,is_new) VALUES(?,?,?); `
     //let query2=     `SELECT ID FROM WEBSITES ORDER BY ID DESC LIMIT 1`
-    let response =  await db.executeSql(query, [name,websiteId]);
+    let response =  await db.executeSql(query, [name,websiteId,false]);
+    console.log(query)
    // let response2=db.executeSql(query2);
    console.log(response.message)
 
 }
+
+
+module.exports.checkNewSite = async function ()  {
+  let result = await knex.select('id').from('urls').where('created_at' ,'>=', 'now() - INTERVAL 1 DAY')
+  console.log(result)
+  if (result != null && result !== undefined && result.length>0 ) {
+    return JSON.stringify (result)
+} else {
+    return false;
+}
+  
+}
+
+

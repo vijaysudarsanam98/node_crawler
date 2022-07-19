@@ -63,7 +63,6 @@ app.listen(port, async function () {
 
    await crawler.crawlAllUrls(url,websiteId)
 
-   await website.updateNewSite()
 
 
 

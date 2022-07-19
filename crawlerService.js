@@ -14,6 +14,7 @@ module.exports.crawlAllUrls= async function  (url,websiteId) {
     console.log(`Crawling ${url}`);
     console.log(websiteId)
    await website.siteInsert(url,websiteId)
+   await website.updateNewSite()
     c.queue({
         uri: url,
         callback:  function (err, res, done) {

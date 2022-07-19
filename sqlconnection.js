@@ -7,7 +7,7 @@ const pool = mysql.createConnection({
 host: "localhost",
 user: "root",
 password: "",
-database: "db_crawler"
+database: "expirement"
 });
 
 
@@ -34,6 +34,24 @@ exports.executeSql =  async function (query, params) {
         resContent.rows = result.rows || null;
         console.log(resContent)
         return resContent;
+    } catch (err) {
+       console.log(err)
+    }
+}
+
+
+
+let resContent2 = {};
+
+exports.executeSql2 =  async function (query) {
+  console.log(query)
+    try {
+        const result = await pool.query(query);
+        resContent2.message = 'Success.';
+        resContent2.success = true;
+        resContent2.rows = result.rows || null;
+        console.log(resContent2)
+        return resContent2;
     } catch (err) {
        console.log(err)
     }

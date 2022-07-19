@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const app = express();
 let url='https://www.trueinsights.co/'
 const database = require('./sqlConnection');
+const { json } = require('body-parser');
 
 
 
@@ -53,13 +54,19 @@ app.listen(port, async function () {
     console.log(`crawler is up: ${process.env.NODE_ENV}`);
   await website.singleRowInsert(url)
 
+  
+
   let websiteId= await website.getWebsiteId()
   console.log(websiteId)
 
-  const newSite=await website.checkNewSite()
-  console.log(newSite)
-  
+
+
    await crawler.crawlAllUrls(url,websiteId)
+
+   await website.updateNewSite()
+
+
+
  
  //console.log(x)
                //  console.log('crawler.crawlAllUrls()');

@@ -6,7 +6,7 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      database: 'db_crawler',
+      database: 'expirement',
       user:     'root',
       password: ''
     },

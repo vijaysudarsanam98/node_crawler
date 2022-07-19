@@ -130,3 +130,15 @@ module.exports.checkNewSite = async function ()  {
 }
 
 
+
+module.exports.updateNewSite = async function ()  {
+  console.log('before inser')
+  let query =  ` update urls  set is_new=true
+  where id in(SELECT id FROM urls where created_at >= now() - INTERVAL 1 DAY )   `
+  let response =  await db.executeSql2(query);
+    console.log(response)
+
+
+   // let response2=db.executeSql(query2);
+  
+}

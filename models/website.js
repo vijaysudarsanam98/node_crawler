@@ -118,16 +118,16 @@ module.exports. getWebsiteId = async function ()  {
 }
 
 
-module.exports.checkNewSite = async function ()  {
-  let result = await knex.select('id').from('urls').where('created_at' ,'>=', 'now() - INTERVAL 1 DAY')
-  console.log(result)
-  if (result != null && result !== undefined && result.length>0 ) {
-    return JSON.stringify (result)
-} else {
-    return false;
-}
+// module.exports.checkNewSite = async function ()  {
+//   let result = await knex.select('id').from('urls').where('created_at' ,'>=', 'now() - INTERVAL 1 DAY')
+//   console.log(result)
+//   if (result != null && result !== undefined && result.length>0 ) {
+//     return JSON.stringify (result)
+// } else {
+//     return false;
+// }
   
-}
+// }
 
 
 

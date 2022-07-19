@@ -14,7 +14,7 @@ module.exports.crawlAllUrls= async function  (url,websiteId) {
     console.log(`Crawling ${url}`);
     console.log(websiteId)
    await website.siteInsert(url,websiteId)
-   await website.updateNewSite()
+  let update= await website.updateNewSite()
     c.queue({
         uri: url,
         callback:  function (err, res, done) {
@@ -30,7 +30,7 @@ module.exports.crawlAllUrls= async function  (url,websiteId) {
                             obselete.push(href);
                             // Slow down the
                             setTimeout(function() {
-                                href.startsWith('http') ? module.exports.crawlAllUrls(href,websiteId) : module.exports.crawlAllUrls(`${url}${href}${websiteId}`) // The latter might need extra code to test if its the same site and it is a full domain with no URI
+                                href.startsWith('http') ? module.exports.crawlAllUrls(href,websiteId,update) : module.exports.crawlAllUrls(`${url}${href}${websiteId}${update}`) 
                             }, 5000)
                         }
                     }
@@ -43,7 +43,6 @@ module.exports.crawlAllUrls= async function  (url,websiteId) {
             done();
         }
     })
-    //console.log(url)
     
 }
 

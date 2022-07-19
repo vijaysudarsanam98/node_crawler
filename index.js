@@ -33,20 +33,7 @@ app.get(['/', '/health'], function (req, res) {
 
 
 
-// app.post('/api/users',async (req, res) =>{
-  
-//  let name= req.body.name
-//    let users =({
-//       name
-   
-//     });
-//     console.log(users)
-    
-//     await model.create(users)
-//     if(users) return res.status(200).json({'message':'success','response_objects':null});
-    
-      
-//       });
+
 
 
 

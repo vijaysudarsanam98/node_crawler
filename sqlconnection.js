@@ -11,17 +11,7 @@ database: "final"
 });
 
 
-// pool.connect((err) => {
-//     if (err) {
-//       console.log("Database Connection Failed !!!", err);
-//     } else {
-//       console.log("connected to Database");
-//     }
-//   });
-    
 
-
-//   module.exports = pool
 
 
   let resContent = {};
